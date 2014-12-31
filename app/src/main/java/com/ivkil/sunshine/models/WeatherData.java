@@ -27,20 +27,17 @@ public class WeatherData {
         return list;
     }
 
+    @SerializedName("city")
+    private City city;
+
+    public City getCity(){
+        return city;
+    }
+
     public void setUnitsType(int unitsType) {
         this.unitsType = unitsType;
     }
 
-    public String[] getForecastString() {
-        String[] resultStrs = new String[list.length];
-        for (int i = 0; i < list.length; i++) {
-            Temperature temperature = list[i].getTemperature();
-            String highAndLow = formatHighLows(temperature.getHigh(), temperature.getLow());
-            String description = list[i].getWeather()[0].getDescribtion();
-            resultStrs[i] = getReadableDateString(list[i].getDateTime()) + " - " + description + " - " + highAndLow;
-        }
-        return resultStrs;
-    }
 
     private String formatHighLows(double high, double low) {
         if (unitsType == TYPE_IMPERIAL) {
@@ -57,8 +54,7 @@ public class WeatherData {
         return highLowStr;
     }
 
-    private String getReadableDateString(long time) {
-        Date date = new Date(time * 1000);
+    private String getReadableDateString(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("E, MMM d", Locale.ENGLISH);
         return format.format(date).toString();
     }

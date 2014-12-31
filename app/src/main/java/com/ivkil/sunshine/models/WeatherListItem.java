@@ -2,28 +2,51 @@ package com.ivkil.sunshine.models;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by Ivan on 12/28/2014.
- */
-public class WeatherListItem {
-    @SerializedName("dt")
-    private long dateTime;
+import java.util.Date;
 
+
+public class WeatherListItem {
+
+    @SerializedName("dt")
+    private Date dateTime;
     @SerializedName("temp")
     private Temperature temperature;
-
+    @SerializedName("pressure")
+    private double pressure;
+    @SerializedName("humidity")
+    private int humidity;
     @SerializedName("weather")
-    private WeatherItem[] weather;
+    private Weather[] weather;
+    @SerializedName("speed")
+    private double speed;
+    @SerializedName("deg")
+    private double direction;
 
-    public WeatherItem[] getWeather() {
-        return weather;
+    public Date getDateTime() {
+        return dateTime;
     }
 
     public Temperature getTemperature() {
         return temperature;
     }
 
-    public long getDateTime() {
-        return dateTime;
+    public double getPressure() {
+        return pressure;
+    }
+
+    public int getHumidity() {
+        return humidity;
+    }
+
+    public Weather[] getWeather() {
+        return weather;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public double getDirection() {
+        return direction;
     }
 }
